@@ -1,0 +1,6 @@
+.headerDiv {
+  margin: 1.6rem 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
