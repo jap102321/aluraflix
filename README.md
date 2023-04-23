@@ -8,4 +8,7 @@ This project it's being the manager of a streaming service like Netflix/Prime an
 
 In my specific design I tried to add movies instead of courses because in my opinion it is way more showy than a courses platform, but its possible to adapt it to any video watching service.
 
-
+<div align="center">
+  <h3>Status</h3>
+  :construction:In development:construction:
+</div>
