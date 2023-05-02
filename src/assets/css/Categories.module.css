@@ -1,0 +1,11 @@
+.titleCat {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 24px;
+  margin-inline: 1rem;
+  margin-bottom: 2rem;
+}
+
+.movieCategory {
+  margin-inline: 1rem;
+  margin-block-end: 2rem;
+}

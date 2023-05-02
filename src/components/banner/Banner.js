@@ -8,7 +8,14 @@ const Banner = () => {
         backgroundImage: `url(${banner})`,
       }}
     >
-      asdas
+      <div className={styles.dataInside}>
+        <div className={styles.description}>
+          <p>
+            La vida de Desmond Doss quien se enlista en el ejército durante la
+            Segunda Guerra Mundial a pesar de rehusarse a disparar un arma.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

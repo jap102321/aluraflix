@@ -1,0 +1,41 @@
+.card {
+  position: relative;
+}
+.card > .movieList {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: scroll;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.movieList img {
+  display: block;
+  padding-inline: 0.5rem;
+}
+
+.card button {
+  background-color: rgba(52, 52, 52, 0.8);
+  cursor: pointer;
+  z-index: 1;
+  position: absolute;
+  height: 74%;
+  width: 7%;
+  color: white;
+  font-size: 24px;
+  border: none;
+  top: 10%;
+  transition: 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.moveRight {
+  right: 0px;
+}
+
+.moveLeft {
+  left: 0px;
+}
+
+.card:hover .move {
+  opacity: 1;
+}

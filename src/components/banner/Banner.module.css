@@ -1,4 +1,21 @@
 .bannerDiv {
   font-family: "Source Sans Pro", sans-serif;
   background-size: cover;
+  block-size: 41rem;
+}
+
+.dataInside {
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  block-size: 100%;
+}
+
+.description {
+  max-inline-size: 30%;
+  font-size: 24px;
+  display: flex;
+  align-items: flex-end;
+  padding-block-end: 1rem;
+  background: rgba(0, 0, 0, 0.5);
 }
