@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 const Categories = ({ movieList, id }) => {
   const [categories, setCategories] = useState([]);
+
   useEffect(() => {
     movieList.map((cat) => setCategories(cat));
   });

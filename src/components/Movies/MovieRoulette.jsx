@@ -10,6 +10,7 @@ const MovieRoulette = ({ url }) => {
   useEffect(() => {
     search(url, setMovies);
   }, [url]);
+
   return (
     <div className={styles.roulette}>
       <Categories movieList={movies.map((mov) => mov.categories)} />

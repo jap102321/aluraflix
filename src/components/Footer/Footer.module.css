@@ -1,0 +1,12 @@
+.footer {
+  box-sizing: border-box;
+  border-block-start: 2px solid #2a7ae4;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  margin-block-start: 1.25rem;
+  margin-block-end: 3.81rem;
+}
