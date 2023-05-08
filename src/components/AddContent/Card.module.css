@@ -1,0 +1,16 @@
+.card {
+  font-family: "Source Sans Pro", sans-serif;
+  margin-block: 5rem;
+  margin-inline: 2rem;
+}
+
+.cardButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.functionButtons {
+  inline-size: 350px;
+  display: flex;
+  justify-content: space-around;
+}

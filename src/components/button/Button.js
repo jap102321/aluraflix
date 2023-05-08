@@ -1,9 +1,21 @@
 import style from "./Button.module.css";
-
+import { useState, useEffect } from "react";
+import { ButtonStyling } from "./ButtonSC";
+import { blueButton, grayButton, defaultButton } from "./ButtonTheme";
 const Button = (props) => {
-  const { description } = props;
+  const [theme, setTheme] = useState();
+  const { description, styling } = props;
 
-  return <button className={style.button}>{description}</button>;
+  useEffect(() => {
+    if (styling === "blue") {
+      setTheme(blueButton);
+    } else if (styling === "gray") {
+      setTheme(grayButton);
+    } else {
+      setTheme(defaultButton);
+    }
+  }, [styling]);
+  return <ButtonStyling theme={theme}>{description}</ButtonStyling>;
 };
 
 export default Button;

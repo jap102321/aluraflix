@@ -1,6 +1,10 @@
 .headerDiv {
-  margin: 1.6rem 2.6rem;
+  box-sizing: border-box;
   display: flex;
+  padding-block: 1.6rem;
+  padding-inline: 1.6rem;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
+  border-block-end: 4px solid #2a7ae4;
 }
