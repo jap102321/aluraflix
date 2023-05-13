@@ -1,4 +1,3 @@
-import style from "./Button.module.css";
 import { useState, useEffect } from "react";
 import { ButtonStyling } from "./ButtonSC";
 import { blueButton, grayButton, defaultButton } from "./ButtonTheme";

@@ -1,49 +1,19 @@
 .addNewContent {
   display: flex;
   flex-direction: column;
+  inline-size: 100%;
+  justify-content: center;
 }
 
-.inputBox {
-  margin-block-start: 3rem;
-  font-family: "Source Sans Pro", sans-serif;
+.form {
+  inline-size: 80%;
   display: flex;
-  justify-content: center;
-  width: 90%;
-  height: 35px;
-  margin-inline: 7rem;
+  flex-direction: column;
+  margin: 0 auto;
 }
 
 .input {
-  display: flex;
-  flex-direction: column;
-  width: 95%;
-  border: none;
-  position: relative;
-}
-
-.input__desc {
-  height: 200px;
-}
-
-.input input {
   background-color: #53585d;
-  color: white;
-  font-size: 16px;
-  display: block;
-}
-
-.input label {
-  width: 95%;
-  background-color: #53585d;
-}
-
-.input::placeholder {
-  position: absolute;
-  color: white;
-  top: 0px;
-  padding-block-start: -3px;
-}
-
-input[type="text"] {
-  padding-top: 10px;
+  margin-block-end: 2rem;
+  font-size: 24px;
 }

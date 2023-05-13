@@ -4,6 +4,9 @@
   "homepage": "https://jap102321.github.io/aluraflix",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.12.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -44,5 +47,10 @@
   },
   "devDependencies": {
     "gh-pages": "^5.0.0"
-  }
+  },
+  "description": "<h1 align=\"center\"><img src=\"https://i.gyazo.com/4a28454d9ceeccf839ba88c61a4bbc5a.png\"></h1>",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

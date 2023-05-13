@@ -1,38 +1,83 @@
 import styles from "../../assets/css/AddElements.module.css";
+import TextField from "@mui/material/TextField";
 
-const NewVideo = () => {
+const NewVideo = (props) => {
+  const styleReplacement = {
+    style: {
+      color: "#e5e5e5",
+      marginInline: "10px",
+    },
+  };
+
   return (
     <div className={styles.addNewContent}>
-      <div className={styles.inputBox}>
-        <div className={styles.input}>
-          <label htmlFor="title">Titulo</label>
-          <input id="title" className={styles.input} type="text" />
-        </div>
-      </div>
-      <div className={styles.inputBox}>
-        <div className={styles.input}>
-          <label htmlFor="categoria">Categoria</label>
-          <input id="categoria" className={styles.input} type="text" />
-        </div>
-      </div>
-      <div className={styles.inputBox}>
-        <div className={styles.input}>
-          <label htmlFor="poster">Poster / Imagen</label>
-          <input id="poster" className={styles.input} type="text" />
-        </div>
-      </div>
-      <div className={styles.inputBox}>
-        <div className={styles.input}>
-          <label htmlFor="releaseDate">Año de salida</label>
-          <input id="releaseDate" className={styles.input} type="text" />
-        </div>
-      </div>
-      <div className={styles.inputBox}>
-        <div className={styles.input}>
-          <label htmlFor="trailer">Trailer</label>
-          <input id="trailer" className={styles.input} type="text" />
-        </div>
-      </div>
+      <form className={styles.form}>
+        <TextField
+          className={styles.input}
+          id="title"
+          label="Titulo"
+          variant="standard"
+          InputLabelProps={{
+            style: styleReplacement.style,
+          }}
+          inputProps={{
+            style: styleReplacement.style,
+          }}
+          margin="normal"
+        />
+        <TextField
+          className={styles.input}
+          id="category"
+          label="Categoría"
+          variant="standard"
+          InputLabelProps={{
+            style: styleReplacement.style,
+          }}
+          inputProps={{
+            style: styleReplacement.style,
+          }}
+          margin="normal"
+        />
+        <TextField
+          className={styles.input}
+          id="poster"
+          label="Portada"
+          variant="standard"
+          InputLabelProps={{
+            style: styleReplacement.style,
+          }}
+          inputProps={{
+            style: styleReplacement.style,
+          }}
+          margin="normal"
+        />
+        <TextField
+          className={styles.input}
+          id="releaseDate"
+          label="Año de salida"
+          variant="standard"
+          InputLabelProps={{
+            style: styleReplacement.style,
+          }}
+          inputProps={{
+            style: styleReplacement.style,
+          }}
+          margin="normal"
+        />
+        <TextField
+          className={styles.input}
+          id="trailer"
+          label="Trailer"
+          variant="standard"
+          InputLabelProps={{
+            style: styleReplacement.style,
+          }}
+          inputProps={{
+            style: styleReplacement.style,
+          }}
+          margin="normal"
+        />
+      </form>
     </div>
   );
 };

@@ -1,20 +1,43 @@
 import styles from "../../assets/css/AddElements.module.css";
+import TextField from "@mui/material/TextField";
 
 const NewCategory = () => {
+  const styleReplacement = {
+    style: {
+      color: "#e5e5e5",
+      marginInline: "10px",
+    },
+  };
   return (
     <div className={styles.addNewContent}>
-      <div className={styles.inputBox}>
-        <div className={styles.input}>
-          <label htmlFor="title">Titulo de la categoria</label>
-          <input id="title" className={styles.input} type="text" />
-        </div>
-      </div>
-      <div className={styles.inputBox}>
-        <div className={`${styles.input} ${styles.input__desc}`}>
-          <label htmlFor="title">Descripción categoria</label>
-          <input id="title" className={styles.input} type="text" />
-        </div>
-      </div>
+      <form className={styles.form}>
+        <TextField
+          className={styles.input}
+          id="title"
+          label="Titulo"
+          variant="standard"
+          InputLabelProps={{
+            style: styleReplacement.style,
+          }}
+          inputProps={{
+            style: styleReplacement.style,
+          }}
+          margin="normal"
+        />
+        <TextField
+          className={styles.input}
+          id="description"
+          label="Descripción"
+          variant="standard"
+          InputLabelProps={{
+            style: styleReplacement.style,
+          }}
+          inputProps={{
+            style: styleReplacement.style,
+          }}
+          margin="normal"
+        />
+      </form>
     </div>
   );
 };
