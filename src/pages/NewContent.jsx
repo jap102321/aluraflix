@@ -1,13 +1,11 @@
+import { useLocation } from "react-router-dom";
 import Card from "../components/AddContent/Card";
 import Header from "../components/header/Header";
-import { useLocation } from "react-router-dom";
-
 import NewVideo from "../components/AddContent/NewVideo";
 import NewCategory from "../components/AddContent/NewCategory";
 
 const NewContent = ({ path }) => {
   const url = useLocation().pathname;
-
   let catTest = <p>Page undefined</p>;
 
   //Input video

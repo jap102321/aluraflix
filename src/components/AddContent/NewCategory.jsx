@@ -1,7 +1,11 @@
+import { useState } from "react";
 import styles from "../../assets/css/AddElements.module.css";
 import TextField from "@mui/material/TextField";
+import { validateTitle } from "../../validators/validateCategory";
 
 const NewCategory = () => {
+  const [title, setTitle] = useState({ value: "", valid: null });
+  const [description, setDescription] = useState("");
   const styleReplacement = {
     style: {
       color: "#e5e5e5",
@@ -15,7 +19,8 @@ const NewCategory = () => {
           className={styles.input}
           id="title"
           label="Titulo"
-          variant="standard"
+          variant="outlined"
+          value={title.value}
           InputLabelProps={{
             style: styleReplacement.style,
           }}
@@ -23,12 +28,20 @@ const NewCategory = () => {
             style: styleReplacement.style,
           }}
           margin="normal"
+          onChange={(e) => {
+            const value = e.target.value;
+            const valid = validateTitle(value);
+            setTitle({ value, valid });
+          }}
+          error={title.valid === false}
+          helperText={title.valid === false && "Ingresa un titulo válido"}
         />
         <TextField
           className={styles.input}
           id="description"
           label="Descripción"
-          variant="standard"
+          variant="outlined"
+          value={description}
           InputLabelProps={{
             style: styleReplacement.style,
           }}
@@ -36,6 +49,9 @@ const NewCategory = () => {
             style: styleReplacement.style,
           }}
           margin="normal"
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
         />
       </form>
     </div>
