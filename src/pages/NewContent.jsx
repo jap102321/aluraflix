@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { search } from "../api/Api";
-import Card from "../components/AddContent/Card";
 import Header from "../components/header/Header";
 import NewVideo from "../components/AddContent/NewVideo";
 import NewCategory from "../components/AddContent/NewCategory";
@@ -24,7 +23,7 @@ const NewContent = ({ path }) => {
     catTest = (
       <NewCategory
         categoryList={
-          categoryList && categoryList.map((data, i) => data.categories)
+          categoryList && categoryList.map((data) => data.categories)
         }
       />
     );
@@ -34,7 +33,6 @@ const NewContent = ({ path }) => {
     <>
       <Header />
       {catTest}
-      <Card />
     </>
   );
 };

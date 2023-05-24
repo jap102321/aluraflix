@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "../../assets/css/AddElements.module.css";
 import TextField from "@mui/material/TextField";
 import { Autocomplete } from "@mui/material";
@@ -7,13 +7,13 @@ import {
   validateTitle,
   validateTrailer,
 } from "../../validators/validateMovie";
+import Card from "./Card";
 
 const NewVideo = (props) => {
   const [title, setTitle] = useState({ value: "", valid: null });
   const [poster, setPoster] = useState({ value: "", valid: null });
   const [dateOfRel, setDateOfRel] = useState({ value: "", valid: null });
   const [trailer, setTrailer] = useState({ value: "", valid: null });
-  const url = "/movies";
 
   //Stying
   const styleReplacement = {
@@ -137,12 +137,13 @@ const NewVideo = (props) => {
           onChange={(e) => {
             const value = e.target.value;
             const valid = validateTrailer(value);
-            setTitle({ value, valid });
+            setTrailer({ value, valid });
           }}
           error={trailer.valid === false}
           helperText={trailer.valid === false && "Ingresa un enlace válido"}
         />
       </form>
+      <Card />
     </div>
   );
 };

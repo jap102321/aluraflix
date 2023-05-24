@@ -10,15 +10,25 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "../button/Button";
 import { validateTitle } from "../../validators/validateCategory";
+import Card from "./Card";
+import { search, updateCategories } from "../../api/Api";
 
 const NewCategory = ({ categoryList }) => {
   const [title, setTitle] = useState({ value: "", valid: null });
   const [description, setDescription] = useState("");
   const [movieList, setMovieList] = useState([]);
+  const [formData, setFormData] = useState([]);
+  const [newCat, setNewCat] = useState([]);
+  const url = "/updatableMovies";
+
   //Data Table
   useEffect(() => {
     categoryList.map((cat) => setMovieList(cat));
   });
+  useEffect(() => {
+    search(url, setNewCat);
+  }, []);
+
   //Styling
   const styleReplacement = {
     style: {
@@ -27,9 +37,29 @@ const NewCategory = ({ categoryList }) => {
     },
   };
 
+  const handleSubmit = async () => {
+    if (!formData == []) {
+      try {
+        const resp = await updateCategories(url, formData);
+        console.log(resp);
+      } catch (err) {
+        throw err;
+      }
+    } else {
+      setTimeout(() => {}, 300);
+    }
+  };
+
   return (
     <div className={styles.addNewContent}>
-      <form className={styles.form}>
+      <form
+        className={styles.form}
+        onSubmit={async (e) => {
+          e.preventDefault();
+          setFormData({ id: title.value, nombre: title.value, mov: [] });
+          handleSubmit();
+        }}
+      >
         <TextField
           className={styles.input}
           id="title"
@@ -68,6 +98,7 @@ const NewCategory = ({ categoryList }) => {
             setDescription(e.target.value);
           }}
         />
+        <Card />
       </form>
 
       <TableContainer
@@ -81,7 +112,6 @@ const NewCategory = ({ categoryList }) => {
               <TableCell>Nombre</TableCell>
               <TableCell align="right">Descripción</TableCell>
               <TableCell align="right">Editar</TableCell>
-              <TableCell align="right">Remover</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -101,8 +131,23 @@ const NewCategory = ({ categoryList }) => {
                 <TableCell align="right">
                   <Button styling="gray" description="Editar"></Button>
                 </TableCell>
+              </TableRow>
+            ))}
+            {newCat.map((data, i) => (
+              <TableRow
+                key={data.id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {data.nombre}
+                </TableCell>
                 <TableCell align="right">
-                  <Button styling="gray" description="Remover"></Button>
+                  {data.description
+                    ? data.description
+                    : "No description available"}
+                </TableCell>
+                <TableCell align="right">
+                  <Button styling="gray" description="Editar"></Button>
                 </TableCell>
               </TableRow>
             ))}

@@ -8,3 +8,13 @@ export const search = async (url, setData) => {
   const res = await api.get(url);
   setData(res.data);
 };
+
+export const updateCategories = async (url, setData) => {
+  try {
+    const response = await api.post(url, setData);
+    console.log("osi");
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};

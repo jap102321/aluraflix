@@ -135,5 +135,12 @@
         }
       ]
     }
+  ],
+  "updatableMovies": [
+    {
+      "id": "Acción",
+      "nombre": "Acción",
+      "mov": []
+    }
   ]
 }
