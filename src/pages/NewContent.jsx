@@ -17,7 +17,13 @@ const NewContent = ({ path }) => {
 
   //Input video
   if (url === "/new/video") {
-    catTest = <NewVideo />;
+    catTest = (
+      <NewVideo
+        categoryList={
+          categoryList && categoryList.map((data) => data.categories)
+        }
+      />
+    );
     //Inputs category
   } else if (url === "/new/category") {
     catTest = (

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "../../assets/css/AddElements.module.css";
 import TextField from "@mui/material/TextField";
 import Table from "@mui/material/Table";
@@ -38,7 +39,7 @@ const NewCategory = ({ categoryList }) => {
   };
 
   const handleSubmit = async () => {
-    if (!formData == []) {
+    if (!formData === []) {
       try {
         const resp = await updateCategories(url, formData);
         console.log(resp);
@@ -112,6 +113,7 @@ const NewCategory = ({ categoryList }) => {
               <TableCell>Nombre</TableCell>
               <TableCell align="right">Descripción</TableCell>
               <TableCell align="right">Editar</TableCell>
+              <TableCell align="right">Remover</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -129,7 +131,10 @@ const NewCategory = ({ categoryList }) => {
                     : "No description available"}
                 </TableCell>
                 <TableCell align="right">
-                  <Button styling="gray" description="Editar"></Button>
+                  <p>No es posible editar.</p>
+                </TableCell>
+                <TableCell align="right">
+                  <p>No es posible eliminar.</p>
                 </TableCell>
               </TableRow>
             ))}
@@ -147,7 +152,12 @@ const NewCategory = ({ categoryList }) => {
                     : "No description available"}
                 </TableCell>
                 <TableCell align="right">
-                  <Button styling="gray" description="Editar"></Button>
+                  <Link to={`/edit/category/${data.id}`}>
+                    <Button styling="gray" description="Editar"></Button>
+                  </Link>
+                </TableCell>
+                <TableCell align="right">
+                  <Button styling="gray" description="Remover"></Button>
                 </TableCell>
               </TableRow>
             ))}

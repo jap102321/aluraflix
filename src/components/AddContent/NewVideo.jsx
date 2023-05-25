@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../../assets/css/AddElements.module.css";
 import TextField from "@mui/material/TextField";
 import { Autocomplete } from "@mui/material";
@@ -8,13 +8,20 @@ import {
   validateTrailer,
 } from "../../validators/validateMovie";
 import Card from "./Card";
+import { search } from "../../api/Api";
 
-const NewVideo = (props) => {
+const NewVideo = ({ categoryList }) => {
   const [title, setTitle] = useState({ value: "", valid: null });
   const [poster, setPoster] = useState({ value: "", valid: null });
   const [dateOfRel, setDateOfRel] = useState({ value: "", valid: null });
   const [trailer, setTrailer] = useState({ value: "", valid: null });
+  const [category, setCategory] = useState([]);
+  const [updcategoryList, setUpdCatList] = useState([]);
 
+  useEffect(() => {
+    categoryList.map((data) => setCategory(data));
+    search("/updatableMovies", setUpdCatList);
+  }, []);
   //Stying
   const styleReplacement = {
     style: {
@@ -27,12 +34,21 @@ const NewVideo = (props) => {
       height: "48px",
     },
   };
-  //Categorie for movies.
-  const categories = [
-    { label: "starwars", id: 1 },
-    { label: "adventure", id: 2 },
-  ];
 
+  const isOptionEqualTovalue = (option, value) => {
+    return option.label === value.label;
+  };
+
+  //Categorie for movies.
+  const categories = category.map((data) => {
+    return { label: data.nombre };
+  });
+
+  const moreCategories = updcategoryList.map((data) => {
+    return { label: data.nombre };
+  });
+
+  const allCat = [...categories, ...moreCategories];
   return (
     <div className={styles.addNewContent}>
       <form className={styles.form}>
@@ -60,13 +76,14 @@ const NewVideo = (props) => {
         <Autocomplete
           disablePortal
           id="combo-box-demo"
-          options={categories}
+          options={allCat}
           margin="normal"
           sx={{
             color: "#e5e5e5",
             marginBlockEnd: "0px",
             marginBlockStart: "6px",
           }}
+          isOptionEqualToValue={isOptionEqualTovalue}
           renderInput={(params) => (
             <TextField
               {...params}

@@ -138,9 +138,8 @@
   ],
   "updatableMovies": [
     {
-      "id": "Acción",
-      "nombre": "Acción",
-      "mov": []
+      "nombre": "Comedia",
+      "id": "Acción"
     }
   ]
 }

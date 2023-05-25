@@ -35,6 +35,19 @@ const Card = () => {
         </div>
       </div>
     );
+  } else {
+    catTest = (
+      <div className={styles.card}>
+        <div className={styles.cardButtons}>
+          <div className={styles.functionButtons}>
+            <Link to="/new/category">
+              <Button styling="blue" description="Guardar" type="submit" />
+            </Link>
+            <Button styling="gray" description={"Limpiar"} />
+          </div>
+        </div>
+      </div>
+    );
   }
   return <>{catTest}</>;
 };

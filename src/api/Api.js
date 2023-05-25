@@ -18,3 +18,12 @@ export const updateCategories = async (url, setData) => {
     throw err;
   }
 };
+
+export const updateData = async (url, data) => {
+  try {
+    const resp = await api.put(url, data);
+    return resp.data;
+  } catch (err) {
+    throw err;
+  }
+};
