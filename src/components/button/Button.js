@@ -3,7 +3,7 @@ import { ButtonStyling } from "./ButtonSC";
 import { blueButton, grayButton, defaultButton } from "./ButtonTheme";
 const Button = (props) => {
   const [theme, setTheme] = useState();
-  const { description, styling, type } = props;
+  const { description, styling, type, onClick } = props;
 
   useEffect(() => {
     if (styling === "blue") {
@@ -15,7 +15,7 @@ const Button = (props) => {
     }
   }, [styling]);
   return (
-    <ButtonStyling type={type} theme={theme}>
+    <ButtonStyling onClick={onClick} type={type} theme={theme}>
       {description}
     </ButtonStyling>
   );

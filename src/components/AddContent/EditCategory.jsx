@@ -3,7 +3,7 @@ import styles from "../../assets/css/AddElements.module.css";
 import TextField from "@mui/material/TextField";
 import { validateTitle } from "../../validators/validateCategory";
 import Card from "./Card";
-import { search, updateData } from "../../api/Api";
+import { deleteData, search, updateData } from "../../api/Api";
 import { useParams } from "react-router-dom";
 import Header from "../header/Header";
 
@@ -29,6 +29,8 @@ const EditCategory = ({ categoryList }) => {
       marginInline: "10px",
     },
   };
+
+  //Update category
   const updateCategoryData = async () => {
     const data = {
       nombre: title.value,

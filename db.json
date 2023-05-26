@@ -138,8 +138,16 @@
   ],
   "updatableMovies": [
     {
-      "nombre": "Comedia",
-      "id": "Acción"
+      "id": "59a061e6-8eab-4fbd-934f-4084d306ff0e",
+      "nombre": "Acción",
+      "description": "",
+      "mov": []
+    },
+    {
+      "id": "8bf6c346-ae7c-4a45-a841-ff43e0c238c1",
+      "nombre": "Romance",
+      "description": "",
+      "mov": []
     }
   ]
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { v4 as uuid } from "uuid";
 import { Link } from "react-router-dom";
 import styles from "../../assets/css/AddElements.module.css";
 import TextField from "@mui/material/TextField";
@@ -12,7 +13,7 @@ import Paper from "@mui/material/Paper";
 import Button from "../button/Button";
 import { validateTitle } from "../../validators/validateCategory";
 import Card from "./Card";
-import { search, updateCategories } from "../../api/Api";
+import { search, updateCategories, deleteData } from "../../api/Api";
 
 const NewCategory = ({ categoryList }) => {
   const [title, setTitle] = useState({ value: "", valid: null });
@@ -25,10 +26,10 @@ const NewCategory = ({ categoryList }) => {
   //Data Table
   useEffect(() => {
     categoryList.map((cat) => setMovieList(cat));
-  });
+  }, []);
   useEffect(() => {
     search(url, setNewCat);
-  }, []);
+  }, [newCat]);
 
   //Styling
   const styleReplacement = {
@@ -37,27 +38,45 @@ const NewCategory = ({ categoryList }) => {
       marginInline: "10px",
     },
   };
-
+  //Add new category
   const handleSubmit = async () => {
-    if (!formData === []) {
+    if (Object.keys(formData).length !== 0) {
       try {
         const resp = await updateCategories(url, formData);
-        console.log(resp);
+        if (resp.data && resp.data.nombre) {
+          setNewCat(...newCat, resp.data);
+          setFormData({});
+        }
+        return resp;
       } catch (err) {
         throw err;
       }
-    } else {
-      setTimeout(() => {}, 300);
     }
   };
 
+  //Delete category
+  const deleteCategory = async (id) => {
+    try {
+      await deleteData(`/updatableMovies/${id}`);
+      setNewCat(newCat.filter((category) => category.id !== id));
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  //DOM Render
   return (
     <div className={styles.addNewContent}>
       <form
         className={styles.form}
         onSubmit={async (e) => {
           e.preventDefault();
-          setFormData({ id: title.value, nombre: title.value, mov: [] });
+          setFormData({
+            id: uuid(),
+            nombre: title.value,
+            description: description,
+            mov: [],
+          });
           handleSubmit();
         }}
       >
@@ -157,7 +176,11 @@ const NewCategory = ({ categoryList }) => {
                   </Link>
                 </TableCell>
                 <TableCell align="right">
-                  <Button styling="gray" description="Remover"></Button>
+                  <Button
+                    onClick={() => deleteCategory(data.id)}
+                    styling="gray"
+                    description="Remover"
+                  ></Button>
                 </TableCell>
               </TableRow>
             ))}

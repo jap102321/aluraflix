@@ -12,7 +12,6 @@ export const search = async (url, setData) => {
 export const updateCategories = async (url, setData) => {
   try {
     const response = await api.post(url, setData);
-    console.log("osi");
     return response.data;
   } catch (err) {
     throw err;
@@ -22,6 +21,15 @@ export const updateCategories = async (url, setData) => {
 export const updateData = async (url, data) => {
   try {
     const resp = await api.put(url, data);
+    return resp.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const deleteData = async (url) => {
+  try {
+    const resp = await api.delete(url);
     return resp.data;
   } catch (err) {
     throw err;
