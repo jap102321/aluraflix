@@ -12,9 +12,7 @@ const Card = () => {
       <div className={styles.card}>
         <div className={styles.cardButtons}>
           <div className={styles.functionButtons}>
-            <Link to="/aluraflix">
-              <Button styling="blue" description="Guardar" type="submit" />
-            </Link>
+            <Button styling="blue" description="Guardar" type="submit" />
             <Button styling="gray" description={"Limpiar"} />
           </div>
           <Link to="/new/category">

@@ -9,6 +9,6 @@ export const validatePoster = (poster) => {
 
 export const validateDate = (date) => {};
 
-export const validateTrailer = (url) => {
-  return url.contains("http") || url.contains("https") ? true : false;
-};
+// export const validateTrailer = (url) => {
+//   return url.contains("http") || url.contains("https") ? true : false;
+// };

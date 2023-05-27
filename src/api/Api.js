@@ -35,3 +35,21 @@ export const deleteData = async (url) => {
     throw err;
   }
 };
+
+export const addMovieToMovArray = async (movieId, movieData) => {
+  try {
+    const response = await api.get(`/updatableMovies/${movieId}`);
+    const movie = response.data;
+
+    console.log(movie);
+
+    movie.mov.push(movieData);
+
+    await api.patch(`/updatableMovies/${movieId}`, movie);
+
+    console.log("Película agregada exitosamente");
+  } catch (error) {
+    console.error("Error al agregar la película:", error);
+    throw error;
+  }
+};

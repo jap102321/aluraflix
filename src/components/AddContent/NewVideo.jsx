@@ -8,7 +8,8 @@ import {
   validateTrailer,
 } from "../../validators/validateMovie";
 import Card from "./Card";
-import { search } from "../../api/Api";
+import { search, addMovieToMovArray } from "../../api/Api";
+import { v4 } from "uuid";
 
 const NewVideo = ({ categoryList }) => {
   const [title, setTitle] = useState({ value: "", valid: null });
@@ -16,12 +17,41 @@ const NewVideo = ({ categoryList }) => {
   const [dateOfRel, setDateOfRel] = useState({ value: "", valid: null });
   const [trailer, setTrailer] = useState({ value: "", valid: null });
   const [category, setCategory] = useState([]);
-  const [updcategoryList, setUpdCatList] = useState([]);
+  const [updCategoryList, setUpdCatList] = useState([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [movieData, setMovieData] = useState({
+    mov: "",
+  });
+  // const [test, setTest] = useState([]);
 
   useEffect(() => {
     categoryList.map((data) => setCategory(data));
     search("/updatableMovies", setUpdCatList);
+    // search(url, setTest);
   }, []);
+
+  const handleCategoryChange = (event, value) => {
+    setSelectedCategoryId(value);
+  };
+
+  const handleAddMovie = async (event) => {
+    event.preventDefault();
+    const movieId = selectedCategoryId;
+    const movie = {
+      title: title.value,
+      dateOfRel: dateOfRel.value,
+      id: v4(),
+      poster: poster.value,
+      trailer: trailer.value,
+    };
+
+    try {
+      await addMovieToMovArray(movieId, movie);
+    } catch (error) {
+      console.error("Error al agregar la película:", error);
+    }
+  };
+
   //Stying
   const styleReplacement = {
     style: {
@@ -44,14 +74,15 @@ const NewVideo = ({ categoryList }) => {
     return { label: data.nombre };
   });
 
-  const moreCategories = updcategoryList.map((data) => {
-    return { label: data.nombre };
+  const moreCategories = updCategoryList.map((data) => {
+    return { id: data.id, label: data.nombre };
   });
 
   const allCat = [...categories, ...moreCategories];
+
   return (
     <div className={styles.addNewContent}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleAddMovie}>
         <TextField
           className={styles.input}
           id="title"
@@ -83,6 +114,7 @@ const NewVideo = ({ categoryList }) => {
             marginBlockEnd: "0px",
             marginBlockStart: "6px",
           }}
+          onChange={(e, value) => setSelectedCategoryId(value.id)}
           isOptionEqualToValue={isOptionEqualTovalue}
           renderInput={(params) => (
             <TextField
@@ -153,14 +185,14 @@ const NewVideo = ({ categoryList }) => {
           margin="normal"
           onChange={(e) => {
             const value = e.target.value;
-            const valid = validateTrailer(value);
-            setTrailer({ value, valid });
+            // const valid = validateTrailer(value);
+            setTrailer({ value, valid: true });
           }}
           error={trailer.valid === false}
           helperText={trailer.valid === false && "Ingresa un enlace válido"}
         />
+        <Card />
       </form>
-      <Card />
     </div>
   );
 };
