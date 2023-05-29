@@ -13,9 +13,9 @@ import { v4 } from "uuid";
 import InfoModal from "../UI/InfoModal";
 
 const NewVideo = ({ categoryList }) => {
-  const [readInfo, setReadInfo] = useState();
+  const [readInfo, setReadInfo] = useState(false);
   const [title, setTitle] = useState({ value: "", valid: null });
-  const [poster, setPoster] = useState({ value: "", valid: null });
+  const [poster, setPoster] = useState({ value: "", valid: true });
   const [dateOfRel, setDateOfRel] = useState({ value: "", valid: null });
   const [trailer, setTrailer] = useState({ value: "", valid: null });
   const [category, setCategory] = useState([]);
@@ -24,12 +24,10 @@ const NewVideo = ({ categoryList }) => {
   const [movieData, setMovieData] = useState({
     mov: "",
   });
-  // const [test, setTest] = useState([]);
 
   useEffect(() => {
     categoryList.map((data) => setCategory(data));
     search("/updatableMovies", setUpdCatList);
-    // search(url, setTest);
   }, []);
 
   const handleCategoryChange = (event, value) => {
@@ -43,7 +41,7 @@ const NewVideo = ({ categoryList }) => {
       title: title.value,
       dateOfRel: dateOfRel.value,
       id: v4(),
-      poster: poster.value,
+      Poster: poster.value,
       trailer: trailer.value,
     };
 
@@ -85,7 +83,7 @@ const NewVideo = ({ categoryList }) => {
   //Info Handler
 
   const infoHandler = () => {
-    setReadInfo(null);
+    setReadInfo(true);
   };
 
   return (
@@ -155,8 +153,6 @@ const NewVideo = ({ categoryList }) => {
               const valid = validateTitle(value);
               setPoster({ value, valid });
             }}
-            error={poster.valid === false}
-            helperText={poster.valid === false && "Ingresa un enlace válido"}
           />
           <TextField
             className={styles.input}

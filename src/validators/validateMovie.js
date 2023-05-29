@@ -3,9 +3,9 @@ export const validateTitle = (title) => {
   return length >= 1 && length <= 15 ? true : false;
 };
 
-export const validatePoster = (poster) => {
-  return poster.contains("http") || poster.contains("https") ? true : false;
-};
+// export const validatePoster = (poster) => {
+//   return poster.contains("http") || poster.contains("https") ? true : false;
+// };
 
 export const validateDate = (date) => {};
 

@@ -11,7 +11,9 @@
 .modal {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-
+  background-color: #fff;
+  padding: 1rem;
+  color: black;
   position: fixed;
   top: 30vh;
   left: 10%;

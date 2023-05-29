@@ -1,18 +1,19 @@
 import { useRef } from "react";
 import styles from "../assets/css/Movie.module.css";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
-const Movie = ({ staticMovies }) => {
+
+const NewMovie = ({ updMovies }) => {
   //Refs
-  const movieListRef = useRef(null);
+  const NewmovieListRef = useRef(null);
   //Function to scroll right
   const handleScrollRight = () => {
-    const list = movieListRef.current;
+    const list = NewmovieListRef.current;
     list.scrollLeft += 780;
   };
 
   //Function to scroll left
   const handleScrollLeft = () => {
-    const list = movieListRef.current;
+    const list = NewmovieListRef.current;
     list.scrollLeft -= 780;
   };
 
@@ -24,11 +25,13 @@ const Movie = ({ staticMovies }) => {
       >
         <BsChevronRight />
       </button>
-      <div className={styles.movieList} id="movieList" ref={movieListRef}>
-        {staticMovies.map((post, index) => (
+
+      <div className={styles.movieList} id="movieList" ref={NewmovieListRef}>
+        {updMovies.map((post, index) => (
           <img src={post.Poster} alt="Poster" key={index} />
         ))}
       </div>
+
       <button
         className={`${styles.moveLeft} ${styles.move}`}
         onClick={handleScrollLeft}
@@ -39,4 +42,4 @@ const Movie = ({ staticMovies }) => {
   );
 };
 
-export default Movie;
+export default NewMovie;

@@ -7,7 +7,6 @@ const InfoModal = ({ setVisibility }) => {
   const Backdrop = () => {
     return <div className={styles.backdrop} onClick={setVisibility}></div>;
   };
-
   const ModalOverlay = () => {
     return (
       <div className={styles.modal}>
