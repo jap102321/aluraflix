@@ -6,14 +6,18 @@ import { useState, useEffect } from "react";
 
 const MovieRoulette = ({ url }) => {
   const [movies, setMovies] = useState([]);
-
+  const [newMovies, setNewMovies] = useState([]);
   useEffect(() => {
     search(url, setMovies);
-  }, [url]);
+    search("/updatableMovies", setNewMovies);
+  }, []);
 
   return (
     <div className={styles.roulette}>
-      <Categories movieList={movies.map((mov) => mov.categories)} />
+      <Categories
+        movieList={movies.map((mov) => mov.categories)}
+        updMovieList={newMovies.map((mov) => mov)}
+      />
     </div>
   );
 };

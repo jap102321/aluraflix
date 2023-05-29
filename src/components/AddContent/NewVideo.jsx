@@ -10,8 +10,10 @@ import {
 import Card from "./Card";
 import { search, addMovieToMovArray } from "../../api/Api";
 import { v4 } from "uuid";
+import InfoModal from "../UI/InfoModal";
 
 const NewVideo = ({ categoryList }) => {
+  const [readInfo, setReadInfo] = useState();
   const [title, setTitle] = useState({ value: "", valid: null });
   const [poster, setPoster] = useState({ value: "", valid: null });
   const [dateOfRel, setDateOfRel] = useState({ value: "", valid: null });
@@ -80,120 +82,129 @@ const NewVideo = ({ categoryList }) => {
 
   const allCat = [...categories, ...moreCategories];
 
+  //Info Handler
+
+  const infoHandler = () => {
+    setReadInfo(null);
+  };
+
   return (
-    <div className={styles.addNewContent}>
-      <form className={styles.form} onSubmit={handleAddMovie}>
-        <TextField
-          className={styles.input}
-          id="title"
-          label="Titulo"
-          variant="outlined"
-          value={title.value}
-          InputLabelProps={{
-            style: styleReplacement.style,
-          }}
-          inputProps={{
-            style: styleReplacement.style,
-          }}
-          margin="normal"
-          onChange={(e) => {
-            const value = e.target.value;
-            const valid = validateTitle(value);
-            setTitle({ value, valid });
-          }}
-          error={title.valid === false}
-          helperText={title.valid === false && "Ingresa un titulo válido"}
-        />
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={allCat}
-          margin="normal"
-          sx={{
-            color: "#e5e5e5",
-            marginBlockEnd: "0px",
-            marginBlockStart: "6px",
-          }}
-          onChange={(e, value) => setSelectedCategoryId(value.id)}
-          isOptionEqualToValue={isOptionEqualTovalue}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Categoria"
-              className={styles.input}
-              InputLabelProps={{
-                style: styleReplacement.styleOpt,
-              }}
-            />
-          )}
-        />
-        <TextField
-          className={styles.input}
-          id="poster"
-          label="Portada"
-          variant="outlined"
-          value={poster.value}
-          InputLabelProps={{
-            style: styleReplacement.style,
-          }}
-          inputProps={{
-            style: styleReplacement.style,
-          }}
-          margin="normal"
-          onChange={(e) => {
-            const value = e.target.value;
-            const valid = validateTitle(value);
-            setPoster({ value, valid });
-          }}
-          error={poster.valid === false}
-          helperText={poster.valid === false && "Ingresa un enlace válido"}
-        />
-        <TextField
-          className={styles.input}
-          id="releaseDate"
-          label="Año de salida"
-          variant="outlined"
-          type="number"
-          value={dateOfRel.value}
-          InputLabelProps={{
-            style: styleReplacement.style,
-          }}
-          inputProps={{
-            style: styleReplacement.style,
-          }}
-          margin="normal"
-          onChange={(e) => {
-            const value = e.target.value;
-            const valid = validateDate(value);
-            setDateOfRel({ value, valid });
-          }}
-          error={dateOfRel.valid === false}
-          helperText={dateOfRel.valid === false && "Ingresa una fecha válida"}
-        />
-        <TextField
-          className={styles.input}
-          id="trailer"
-          label="Trailer"
-          variant="outlined"
-          value={trailer.value}
-          InputLabelProps={{
-            style: styleReplacement.style,
-          }}
-          inputProps={{
-            style: styleReplacement.style,
-          }}
-          margin="normal"
-          onChange={(e) => {
-            const value = e.target.value;
-            // const valid = validateTrailer(value);
-            setTrailer({ value, valid: true });
-          }}
-          error={trailer.valid === false}
-          helperText={trailer.valid === false && "Ingresa un enlace válido"}
-        />
-        <Card />
-      </form>
-    </div>
+    <>
+      {!readInfo && <InfoModal setVisibility={infoHandler} />}
+      <div className={styles.addNewContent}>
+        <form className={styles.form} onSubmit={handleAddMovie}>
+          <TextField
+            className={styles.input}
+            id="title"
+            label="Titulo"
+            variant="outlined"
+            value={title.value}
+            InputLabelProps={{
+              style: styleReplacement.style,
+            }}
+            inputProps={{
+              style: styleReplacement.style,
+            }}
+            margin="normal"
+            onChange={(e) => {
+              const value = e.target.value;
+              const valid = validateTitle(value);
+              setTitle({ value, valid });
+            }}
+            error={title.valid === false}
+            helperText={title.valid === false && "Ingresa un titulo válido"}
+          />
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={allCat}
+            margin="normal"
+            sx={{
+              color: "#e5e5e5",
+              marginBlockEnd: "0px",
+              marginBlockStart: "6px",
+            }}
+            onChange={(e, value) => setSelectedCategoryId(value.id)}
+            isOptionEqualToValue={isOptionEqualTovalue}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Categoria"
+                className={styles.input}
+                InputLabelProps={{
+                  style: styleReplacement.styleOpt,
+                }}
+              />
+            )}
+          />
+          <TextField
+            className={styles.input}
+            id="poster"
+            label="Portada"
+            variant="outlined"
+            value={poster.value}
+            InputLabelProps={{
+              style: styleReplacement.style,
+            }}
+            inputProps={{
+              style: styleReplacement.style,
+            }}
+            margin="normal"
+            onChange={(e) => {
+              const value = e.target.value;
+              const valid = validateTitle(value);
+              setPoster({ value, valid });
+            }}
+            error={poster.valid === false}
+            helperText={poster.valid === false && "Ingresa un enlace válido"}
+          />
+          <TextField
+            className={styles.input}
+            id="releaseDate"
+            label="Año de salida"
+            variant="outlined"
+            type="number"
+            value={dateOfRel.value}
+            InputLabelProps={{
+              style: styleReplacement.style,
+            }}
+            inputProps={{
+              style: styleReplacement.style,
+            }}
+            margin="normal"
+            onChange={(e) => {
+              const value = e.target.value;
+              const valid = validateDate(value);
+              setDateOfRel({ value, valid });
+            }}
+            error={dateOfRel.valid === false}
+            helperText={dateOfRel.valid === false && "Ingresa una fecha válida"}
+          />
+          <TextField
+            className={styles.input}
+            id="trailer"
+            label="Trailer"
+            variant="outlined"
+            value={trailer.value}
+            InputLabelProps={{
+              style: styleReplacement.style,
+            }}
+            inputProps={{
+              style: styleReplacement.style,
+            }}
+            margin="normal"
+            onChange={(e) => {
+              const value = e.target.value;
+              // const valid = validateTrailer(value);
+              setTrailer({ value, valid: true });
+            }}
+            error={trailer.valid === false}
+            helperText={trailer.valid === false && "Ingresa un enlace válido"}
+          />
+          <Card />
+        </form>
+      </div>
+    </>
   );
 };
 

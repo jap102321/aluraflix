@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "../assets/css/Movie.module.css";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
-const Movie = ({ movies }) => {
+const Movie = ({ movies, newMovieData }) => {
   //States
   const [avaiMovies, setMovies] = useState([]);
+  const [newMov, setNewMov] = useState([]);
 
   //Refs
   const movieListRef = useRef(null);
@@ -11,7 +12,7 @@ const Movie = ({ movies }) => {
   //Taking the data from props to map it
   useEffect(() => {
     movies.map((mov) => setMovies(mov));
-  });
+  }, []);
 
   //Function to scroll right
   const handleScrollRight = () => {
@@ -37,6 +38,9 @@ const Movie = ({ movies }) => {
         {movies.map((post, index) => (
           <img src={post.Poster} alt="Poster" key={index} />
         ))}
+        {/* {newMov.map((post, index) => (
+          <img src={post.Poster} alt="Poster" key={index} />
+        ))} */}
       </div>
       <button
         className={`${styles.moveLeft} ${styles.move}`}
